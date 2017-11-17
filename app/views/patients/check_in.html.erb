@@ -1,0 +1,21 @@
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Check In Patient
+    </div>
+
+	<div class='row'>
+		<div class='col-md-12'>
+			<%= form_tag '/send_sms', method: 'post' do %>
+				<div class='form-group'>
+					<label>Patients Phone Number/ ID Number</label>
+					<%= text_field_tag :phone_number, nil, class: 'form-control' %>
+				</div>
+				<div class='form-group'>
+					<button class='btn btn-success'>Check In Patient</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+</div>

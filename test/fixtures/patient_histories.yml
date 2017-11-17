@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symptoms: MyText
+  diagnosis: MyText
+  tests: MyText
+  physicals: MyText
+  prescription: MyText
+
+two:
+  symptoms: MyText
+  diagnosis: MyText
+  tests: MyText
+  physicals: MyText
+  prescription: MyText

@@ -1,0 +1,40 @@
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Patient Histories
+    </div>
+
+    <table class='table table-bordered'>
+      <thead>
+        <tr>
+          <th>Symptoms</th>
+          <th>Diagnosis</th>
+          <th>Tests</th>
+          <th>Physicals</th>
+          <th>Prescription</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @patient_histories.each do |patient_history| %>
+          <tr>
+            <td><%= patient_history.symptoms %></td>
+            <td><%= patient_history.diagnosis %></td>
+            <td><%= patient_history.tests %></td>
+            <td><%= patient_history.physicals %></td>
+            <td><%= patient_history.prescription %></td>
+            <td><%= link_to 'Show', patient_history %></td>
+            <td><%= link_to 'Edit', edit_patient_history_path(patient_history) %></td>
+            <td><%= link_to 'Destroy', patient_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Patient History', new_patient_history_path %>
+
+  </div>
+</div>

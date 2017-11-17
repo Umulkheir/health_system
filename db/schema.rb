@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014233316) do
+ActiveRecord::Schema.define(version: 20171117182618) do
 
   create_table "hospitals", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 20171014233316) do
     t.boolean  "approved",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "patient_histories", force: :cascade do |t|
+    t.text     "symptoms"
+    t.text     "diagnosis"
+    t.text     "tests"
+    t.text     "physicals"
+    t.text     "prescription"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "comment"
+    t.integer  "patient_id"
+    t.integer  "doctor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +55,14 @@ ActiveRecord::Schema.define(version: 20171014233316) do
     t.string   "gender"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "verifications", force: :cascade do |t|
+    t.string   "phone_number"
+    t.string   "verification_code"
+    t.boolean  "verified",          default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
 end
