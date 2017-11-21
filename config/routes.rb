@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 	post '/send_sms' => 'patients#send_sms'
 	get 'patients/verify'
 	post '/patients/verify' => 'patients#verify_patient'
+	patch '/patients/:id/update' => 'patients#update'
+	get '/patients/:id/details' =>'patients#details'#, as: 'patient_details'
 
-  resources :patients, controller: 'patients'
+
+  resources :patients#, controller: 'patients'
   resources :doctors
 
 

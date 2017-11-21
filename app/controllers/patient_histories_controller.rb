@@ -26,10 +26,11 @@ class PatientHistoriesController < ApplicationController
   # POST /patient_histories.json
   def create
     @patient_history = PatientHistory.new(patient_history_params)
+    @patient_history.patient_id = params[:patient]
 
     respond_to do |format|
       if @patient_history.save
-        format.html { redirect_to @patient_history, notice: 'Patient history was successfully created.' }
+        format.html { redirect_to "/patients/#{params[:patient]}/details", notice: 'Patient history was successfully created.' }
         format.json { render :show, status: :created, location: @patient_history }
       else
         format.html { render :new }

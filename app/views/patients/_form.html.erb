@@ -1,4 +1,4 @@
-<%= form_for(patient, url: patients_path) do |f| %>
+<%= form_for(patient, url: patient.new_record? ? patients_path : "/patients/#{patient.id}/update") do |f| %>
   <% if patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
@@ -33,9 +33,9 @@
 
   <div class="form-group">
     <%= f.label :gender %>
-    <select class='form-control'>
-      <option value="male">male</option>
-      <option value="female">female</option>
+    <select class='form-control' name='user[gender]'>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
     </select>
   </div>
 

@@ -4,7 +4,9 @@
       New Patient History
     </div>
 
-	<%= render 'form', patient_history: @patient_history %>
+    <div class='panel-body'>
+		<%= render 'form', patient_history: @patient_history %>
+	</div>
 
 	<%= link_to 'Back', patient_histories_path %>
 </div>

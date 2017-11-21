@@ -11,27 +11,28 @@
     </div>
   <% end %>
 
-  <div class="form-group"
+  <div class="form-group">
+    <%= hidden_field_tag :patient, params[:patient] %>
     <%= f.label :symptoms %>
     <%= f.text_area :symptoms, class: 'form-control' %>
   </div>
 
-  <div class="form-group"
+  <div class="form-group">
     <%= f.label :diagnosis %>
     <%= f.text_area :diagnosis, class: 'form-control' %>
   </div>
 
-  <div class="form-group"
+  <div class="form-group">
     <%= f.label :tests %>
     <%= f.text_area :tests, class: 'form-control' %>
   </div>
 
-  <div class="form-group"
+  <div class="form-group">
     <%= f.label :physicals %>
     <%= f.text_area :physicals, class: 'form-control' %>
   </div>
 
-  <div class="form-group"
+  <div class="form-group">
     <%= f.label :prescription %>
     <%= f.text_area :prescription, class: 'form-control' %>
   </div>
