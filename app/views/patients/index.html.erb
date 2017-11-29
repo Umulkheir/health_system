@@ -4,37 +4,34 @@
       Patients
     </div>
 
-    <table class='table table-bordered'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>ID Number</th>
-          <th>Gender</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @patients.each do |patient| %>
+    <div class='panel-body'>
+      <table class='table table-bordered'>
+        <thead>
           <tr>
-            <td><%= patient.name %></td>
-            <td><%= patient.id_number %></td>
-            <td><%= patient.gender %></td>
-            <td><%= patient.email%></td>
-            <td><%= patient.phone_number %></td>
-            <td><%= link_to 'Show', patient %></td>
-            <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-            <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>Name</th>
+            <th>ID Number</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Phone Number</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
 
-    <br>
+        <tbody>
+          <% @patients.each do |patient| %>
+            <tr>
+              <td><%= link_to patient.name, "/patients/#{patient.id}/details" %></td>
+              <td><%= patient.id_number %></td>
+              <td><%= patient.gender %></td>
+              <td><%= patient.email%></td>
+              <td><%= patient.phone_number %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-    <%= link_to 'New Patient', new_patient_path %>
+      <br>
 
+      <%= link_to 'New Patient', new_patient_path %>
+    </div>
   </div>
 </div>

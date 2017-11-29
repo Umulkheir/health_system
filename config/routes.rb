@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	post '/patients/verify' => 'patients#verify_patient'
 	patch '/patients/:id/update' => 'patients#update'
 	get '/patients/:id/details' =>'patients#details'#, as: 'patient_details'
+	get '/error' => 'home#error'
 
 
   resources :patients#, controller: 'patients'

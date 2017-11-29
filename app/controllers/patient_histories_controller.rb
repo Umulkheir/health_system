@@ -1,6 +1,7 @@
 class PatientHistoriesController < ApplicationController
   before_action :set_patient_history, only: [:show, :edit, :update, :destroy]
   layout 'dashboard'
+  before_action :authenticate_user!
 
   # GET /patient_histories
   # GET /patient_histories.json

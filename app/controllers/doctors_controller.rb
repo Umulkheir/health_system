@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
   layout 'dashboard'
+  before_action :authenticate_user!
   def index
     @doctors = User.where(user_type: 'Doctors')
   end

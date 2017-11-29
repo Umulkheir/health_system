@@ -3,13 +3,13 @@
     <div class="panel-heading">
       Check In Patient
     </div>
-
+ <div class='panel-body'>
 	<div class='row'>
 		<div class='col-md-12'>
 			<%= form_tag '/send_sms', method: 'post' do %>
 				<div class='form-group'>
 					<label>Patients Phone Number/ ID Number</label>
-					<%= text_field_tag :phone_number, nil, class: 'form-control' %>
+					<%= text_field_tag :phone_number, session[:phone_number], class: 'form-control' %>
 					<!-- <input type="text" name="phone_number" id="phone_number" class="form-control"> -->
 				</div>
 				<div class='form-group'>
@@ -18,5 +18,6 @@
 			<% end %>
 		</div>
 	</div>
+</div>
 </div>
 </div>

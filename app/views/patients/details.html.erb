@@ -56,7 +56,7 @@
 
       <br>
 
-      <%= link_to 'Add Patient History', "#{new_patient_history_path}?patient=#{@patient.id}" %>
+      <%= link_to 'Add Patient History', "/patient_histories/new?patient=#{@patient.id}", class: 'btn btn-success' %>
     </div>
   </div>
 </div>

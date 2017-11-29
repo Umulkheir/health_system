@@ -63,7 +63,7 @@ body a:hover{
     height:17px;
     width:17px;
     display:inline-block;
-    background:url(../images/nav-expand.png) no-repeat top;
+    background:url(../images/hos1.jpeg) no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -71,7 +71,7 @@ body a:hover{
     right:10px;
 }
 .active .dcjq-icon {
-    background:url(../images/nav-expand.png) no-repeat bottom;
+    background:url(../images/hos2.jpeg) no-repeat bottom;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -80,7 +80,7 @@ body a:hover{
     height:17px;
     width:17px;
     display:inline-block;
-    background:url(../images/acc-expand.png) no-repeat top;
+    background:url(../images/jpeg) no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;

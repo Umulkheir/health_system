@@ -1,6 +1,7 @@
 class HospitalsController < ApplicationController
   before_action :set_hospital, only: [:show, :edit, :update, :destroy]
   layout 'dashboard'
+  before_action :authenticate_user!
   # before_action :authenticate_user! # Restrict hospital's pages so that people need to sign in before they see these page
 
   # GET /hospitals

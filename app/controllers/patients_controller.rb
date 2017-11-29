@@ -1,6 +1,8 @@
+require "sms_worker"
 class PatientsController < ApplicationController
   layout 'dashboard'
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy] 
+  before_action :authenticate_user!
 
   def index
   	@patients = User.where(user_type: 'Patient')
@@ -55,10 +57,12 @@ class PatientsController < ApplicationController
       # Check whether patient with the verified phone number exists in the db.
       u = User.find_by(phone_number: session[:phone_number])
       if u.nil?
-        u = User.new(phone_number: session[:phone_number], password: '12345678', email: "#{SecureRandom.hex}@gmail.com")
+        u = User.new(phone_number: session[:phone_number], password: '12345678', email: "#{SecureRandom.hex}@gmail.com", user_type: 'Patient')
         u.save!
+        redirect_to "/patients/#{u.id}/edit"
+      else
+        redirect_to "/patients/#{u.id}/details"
       end
-      redirect_to "/patients/#{u.id}/edit"
 
       # If it does:
       # Redirect to the patient's history page
@@ -87,12 +91,26 @@ class PatientsController < ApplicationController
     Verification.create(phone_number: params[:phone_number], verification_code: n)
     session[:phone_number] = params[:phone_number] # We saving the last phone number in the session cookie in the browser
     logger.info ">>>> The code is #{n}"
-    # HTTParty.post('http://w3.synqafrica.com/api/messages/send', body: {api_key: 'c8de764e5da0df4449b401869e0960a7', phone_number: params[:phone_number], text: "Hello. Your verification code is #{n}."})
-    redirect_to "/patients/verify?code=#{n}"
+    SmsWorker.perform_async(params[:phone_number], n)
+    redirect_to "/patients/verify"
   end
 
   def details
+    # Check whether whoever is trying to access this page is a doctor or a receptionist
+    # If it is a patient, we only allow them to access if it is their own details page
+    # Check the time of the last verification done for this patient. If it is more than an hour ago, we ask them to verify again
     @patient=User.find_by(id: params[:id])
+    if current_user.user_type == 'Patient'
+      if current_user != @patient
+        redirect_to '/error'
+      end
+    else
+      v = Verification.where(phone_number: @patient.phone_number).last
+      if !(!v.nil? && Time.now - v.created_at <= 1.hour)
+        session[:phone_number] = @patient.phone_number
+        redirect_to '/patients/check_in', notice: 'Timed out! You need to reverify this patient again.'
+      end
+    end
   end
 
   private
